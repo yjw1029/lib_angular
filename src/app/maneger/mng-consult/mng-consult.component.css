@@ -1,0 +1,19 @@
+.form-container{
+  margin: 40px 30px 100px 30px;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+.button{
+  background-color: #114597;
+  margin:30px 0px;
+  width: 100%;
+  color: #ffffff;
+}
+mat-radio-button{
+  margin: 10px;
+}
+.consult-rslt{
+  width:100%;
+}

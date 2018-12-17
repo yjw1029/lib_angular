@@ -1,0 +1,18 @@
+<div class="form-container">
+  <h3>借书板块</h3>
+  <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="书籍号" type="number" [formControl]="bid" >
+    </mat-form-field>
+    <mat-error *ngIf="bid.dirty && bid.hasError('required')">
+      请填写书籍号!
+    </mat-error>
+
+    <br/><br/>
+
+    <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+            [inline]="false"  [disabled]="!lendForm.valid">
+      确认借书</button>
+  </form>
+
+</div>

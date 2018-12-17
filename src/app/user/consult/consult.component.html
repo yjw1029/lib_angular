@@ -1,0 +1,84 @@
+<div class="form-container">
+  <h3>查询书籍</h3>
+  <mat-form-field>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let rule of rules.bid" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(rule, 'bid')">
+        书籍编号: {{rule}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <mat-chip *ngIf="rules.bname !== ''" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(rules.bname, 'bname')">
+        书籍名称: {{rules.bname}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <mat-chip *ngIf="rules.bplace!== ''" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(rules.bplace, 'bplace')">
+        图书地点: {{rules.bplace}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <mat-chip *ngIf="rules.bauthor!== ''" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(rules.bauthor, 'bauthor')">
+        图书作者: {{rules.bauthor}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input  matInput #ruleInput placeholder="输入您的搜索条件(enter 键入)"
+              [formControl]="infoCtrl"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list">
+    <mat-select placeholder="输入约束类型" [formControl]="kindCtrl" >
+      <mat-option value="bid">书籍编号</mat-option>
+      <mat-option value="bplace">书籍地点</mat-option>
+      <mat-option value="bname">书籍名称</mat-option>
+      <mat-option value="bauthor">书籍作者</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+          [inline]="false" [disabled]="ifInvalid()" (click)="submit()">
+    确定搜索</button>
+
+
+  <div class="consult-rslt" *ngIf="books.length !== 0">
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 consult-rslt">
+      <ng-container matColumnDef="Bid">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 编号 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a>{{element.Bid}}</a> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 名称 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bauthor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 作者 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bauthor}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bpub">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 出版社 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bpub}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bstatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 状态 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bstatus === '0'?'可借':'不可借'}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+  </div>
+  <div class="consult-rslt" *ngIf="books.length === 0">
+    <p style="color: #c4c4c4;">暂无搜索结果</p>
+  </div>
+</div>
+

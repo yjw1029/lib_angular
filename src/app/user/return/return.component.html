@@ -1,0 +1,18 @@
+<div class="form-container">
+  <h3>还书板块</h3>
+  <form [formGroup]="returnForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="书籍号" type="number" [formControl]="bid" >
+    </mat-form-field>
+    <mat-error *ngIf="bid.dirty && bid.hasError('required')">
+      请填写书名!
+    </mat-error>
+
+    <br/><br/>
+
+    <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+            [inline]="false"  [disabled]="!returnForm.valid">
+      确认还书</button>
+  </form>
+
+</div>

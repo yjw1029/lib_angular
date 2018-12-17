@@ -1,0 +1,15 @@
+.form-container{
+  margin: 110px 30px 100px 30px;
+  text-align: center;
+}
+form mat-form-field {
+  display: block;
+}
+.button{
+  background-color: #114597;
+  margin:30px 0px;
+  width: 100%;
+}
+mat-radio-button{
+  margin: 10px;
+}

@@ -1,0 +1,12 @@
+
+form {
+  margin: 100px 10px;
+}
+form mat-form-field {
+  display: block;
+}
+.button{
+  background-color: #114597;
+  margin:40px 0px;
+  width: 100%;
+}

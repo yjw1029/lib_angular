@@ -1,0 +1,40 @@
+
+<div class="form-container">
+  <h3>个人资料填写</h3>
+  <form [formGroup]="infoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="真实姓名" [errorStateMatcher]="matcher" [formControl]="realname">
+    </mat-form-field>
+    <mat-error *ngIf="realname.dirty && realname.hasError('required')">
+      请填写真实姓名！
+    </mat-error>
+    <mat-error *ngIf="realname.dirty && realname.hasError('maxlength')">
+      真实姓名不得超过20个字符！
+    </mat-error>
+
+    <mat-form-field>
+      <mat-select placeholder="类型" [formControl]="status" [errorStateMatcher]="matcher">
+        <mat-option value="other">其他</mat-option>
+        <mat-option value="student">学生</mat-option>
+        <mat-option value="teacher">老师</mat-option>
+        <mat-option value="staff">图书馆职工</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field >
+      <input matInput placeholder="证件号" [formControl]="num" [errorStateMatcher]="matcher">
+    </mat-form-field>
+    <mat-error *ngIf="num.dirty && num.hasError('required')">
+      请填写证件号！
+    </mat-error>
+    <mat-error *ngIf="num.dirty && num.hasError('maxlength')">
+      证件号不得超过30个字符！
+    </mat-error>
+
+
+    <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+            [inline]="false"  [disabled]="!infoForm.valid" (mouseup)="onSubmit()">
+      完成注册</button>
+  </form>
+</div>
+

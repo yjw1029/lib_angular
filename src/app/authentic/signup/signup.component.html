@@ -1,0 +1,51 @@
+
+<div class="form-container">
+  <h3>注册</h3>
+  <form [formGroup]="validateForm">
+    <mat-form-field>
+      <input matInput placeholder="邮箱" [errorStateMatcher]="matcher" [formControl]="email" >
+    </mat-form-field>
+    <mat-error *ngIf="email.dirty && email.hasError('email') && !email.hasError('required')">
+      请填写有效的邮箱
+    </mat-error>
+    <mat-error *ngIf="email.dirty && email.hasError('required')">
+      请填写邮箱！
+    </mat-error>
+    <mat-error *ngIf="email.dirty && email.hasError('maxlength')">
+      邮箱不能超过30个字符！
+    </mat-error>
+
+    <mat-form-field>
+      <input matInput placeholder="昵称" [errorStateMatcher]="matcher" [formControl]="username">
+    </mat-form-field>
+    <mat-error *ngIf="username.dirty && username.hasError('required')">
+      请填写用户昵称！
+    </mat-error>
+    <mat-error *ngIf="username.dirty && username.hasError('maxlength')">
+      用户名不得超过20个字符！
+    </mat-error>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="密码" [errorStateMatcher]="matcher" [formControl]="password">
+    </mat-form-field>
+    <mat-error *ngIf="password.dirty && password.hasError('required')">
+      请填写密码！
+    </mat-error>
+    <mat-error *ngIf="password.dirty && password.hasError('maxlength')">
+     密码不能超过40个字符！
+    </mat-error>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="确认密码" [errorStateMatcher]="matcher" [formControl]="password2">
+    </mat-form-field>
+    <mat-error *ngIf="password2.dirty && validateForm.hasError('validatepswd')">
+      前后两次密码填写不同！
+    </mat-error>
+
+    <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+         [inline]="false"  [disabled]="!validateForm.valid" (click)="onSubmit()">
+      下一步</button>
+  </form>
+
+</div>
+

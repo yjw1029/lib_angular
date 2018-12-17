@@ -1,0 +1,35 @@
+<div class="form-container">
+  <mat-tab-group>
+    <mat-tab label="基本信息">
+      <form [formGroup] = "infoForm">
+        <InputItem [disabled]="true" [clear]="true" [placeholder]="'auto focus'" [focus]="autoFocus" [formControl]="Uno">
+          用户编号</InputItem>
+        <InputItem [clear]="true" [placeholder]="'输入新的昵称'" [focus]="autoFocus" [formControl]="Uid">
+          用户昵称</InputItem>
+        <InputItem [clear]="true" [placeholder]="'输入新的真实姓名'" [focus]="autoFocus" [formControl]="Uname">
+          用户真实姓名</InputItem>
+        <InputItem [clear]="true" [placeholder]="'输入新的证件号'" [focus]="autoFocus" [formControl]="Unum" >
+          用户证件号</InputItem>
+        <InputItem [disabled]="true" [clear]="true" [placeholder]="'auto focus'" [focus]="autoFocus" [formControl]="Uemail">
+          用户邮箱</InputItem>
+      </form>
+
+      <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+              [inline]="false"  [disabled]="!infoForm.valid" (click)="onSubmitInfo()">
+        修改信息</button>
+    </mat-tab>
+    <mat-tab label="修改密码">
+      <form [formGroup] = "pswdForm">
+        <InputItem [clear]="true" [type]="'password'" [placeholder]="'输入新的密码'" [focus]="autoFocus" [formControl]="password">
+          输入新密码</InputItem>
+        <InputItem [clear]="true" [type]="'password'" [placeholder]="'再次输入'" [focus]="autoFocus" [formControl]="password2">
+          再次输入新密码</InputItem>
+      </form>
+
+      <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+              [inline]="false"  (click)="onSubmitPswd()">
+        修改密码</button>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -1,0 +1,21 @@
+.body-container{
+  margin: 140px 30px;
+}
+[Button] {
+  margin: 10px;
+  width: 40%;
+}
+.full-fill{
+  background-color: #354997;
+}
+h1 {
+  color:#354997;
+  font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.surport-info{
+  color:#B3B3B3;
+  font-size: 10px;
+  width:90%;
+  padding: 10px;
+  border-top: #B3B3B3 1px dotted;
+}

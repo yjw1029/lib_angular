@@ -1,0 +1,52 @@
+<div class="form-container">
+  <div class="consult-rslt" *ngIf="lended_books.length !== 0">
+    <h3>已借书籍</h3>
+    <br/><br/>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 consult-rslt">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Bid">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 编号 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a>{{element.Bid}}</a> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 名称 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bauthor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 作者 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bauthor}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Bpub">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> 出版社 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Bpub}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+    <br/>
+    <button Button type="button" class="button" [size]="'small'" [type]="'ghost'"
+            [inline]="false" (click)="return()">
+      归还书籍</button>
+  </div>
+  <div class="consult-rslt" *ngIf="lended_books.length === 0">
+    <p style="color: #c4c4c4;">暂无搜索结果</p>
+  </div>
+
+</div>

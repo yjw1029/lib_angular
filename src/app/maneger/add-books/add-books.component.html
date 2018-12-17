@@ -1,0 +1,56 @@
+<div class="form-container">
+  <h3>添加书籍</h3>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="书名" [formControl]="bname" >
+    </mat-form-field>
+    <mat-error *ngIf="bname.dirty && bname.hasError('required')">
+      请填写书名!
+    </mat-error>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="作者" [formControl]="bauthor">
+    </mat-form-field>
+    <mat-error *ngIf="bauthor.dirty && bauthor.hasError('required')">
+      请填写作者!
+    </mat-error>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="出版社" [formControl]="bpub">
+    </mat-form-field>
+    <mat-error *ngIf="bpub.dirty && bpub.hasError('required')">
+      请填写出版社!
+    </mat-error>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="摆放位置" [formControl]="bplace">
+    </mat-form-field>
+    <mat-error *ngIf="bplace.dirty && bplace.hasError('required')">
+      请填写书所在位置!
+    </mat-error>
+
+    <mat-form-field>
+      <input type="number" matInput placeholder="数量" [formControl]="num">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="类型" [formControl]="bkind" [errorStateMatcher]="matcher">
+        <mat-option value="其他">其他</mat-option>
+        <mat-option value="哲学">哲学</mat-option>
+        <mat-option value="理科">理科</mat-option>
+        <mat-option value="工科">工科</mat-option>
+        <mat-option value="政治">政治</mat-option>
+        <mat-option value="文学">文学</mat-option>
+        <mat-option value="政治">政治</mat-option>
+        <mat-option value="经济">经济</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br/><br/>
+
+    <button Button type="submit" class="button" [size]="'small'" [type]="'primary'"
+            [inline]="false"  [disabled]="!bookForm.valid">
+      添加书籍</button>
+  </form>
+
+</div>
